@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 int findTripletsWithSmallerSum(std::vector<int>& nums, int sum){
     sort(nums.begin(), nums.end());
