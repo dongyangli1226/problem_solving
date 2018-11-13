@@ -24,7 +24,7 @@ int findTripletsWithSmallerSum(std::vector<int>& nums, int sum){
                 right--;
             }
             else{
-                count += (right - left);
+                count += (right - left);// there can be right-left third elements 
                 left++;
             }
         }
@@ -42,7 +42,7 @@ int main(){
     nums.push_back(7);
     //nums.push_back(-4);
 
-    int res = findTripletsWithSmallerSum(nums, 12);
+    int res = findTripletsWithSmallerSum(nums, 20);
 
     std::cout << res << std::endl;
 

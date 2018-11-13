@@ -9,7 +9,7 @@ std::vector<std::string> findAllPalindromicPartitions(std::string s){
     std::vector<std::string> result;
 
     int left, right, currentIndex = 0;
-    int currentStartIndex, currentLength;
+    int currentLength;
 
     while(currentIndex < s.size()){
         left = currentIndex;
@@ -23,7 +23,6 @@ std::vector<std::string> findAllPalindromicPartitions(std::string s){
 
         while(right < s.size()-1 && left > 0 && s[left-1] == s[right+1]){
             currentLength = right - left + 1;
-            currentStartIndex = left;
             std::string newPalindromicStr = s.substr(left, currentLength);
             result.push_back(newPalindromicStr);
             right++;
@@ -31,7 +30,6 @@ std::vector<std::string> findAllPalindromicPartitions(std::string s){
         }
 
         currentLength = right - left + 1;
-        currentStartIndex = left;
         std::string newPalindromicStr = s.substr(left, currentLength);
         result.push_back(newPalindromicStr);
    }
