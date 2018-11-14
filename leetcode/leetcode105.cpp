@@ -25,13 +25,14 @@ Node* buildHelper(int pre_start, int in_start, int in_end, std::vector<int>& pre
 
     Node* root = newNode(preorder[pre_start]);
 
-    int indexFoundFromInorder = std::find(inorder.begin()+in_start, inorder.begin()+in_end, preorder[pre_start]) - inorder.begin();//-inorder.begin() transfer it to int
+    auto indexFoundFromInorder = std::find(inorder.begin()+in_start, inorder.begin()+in_end, preorder[pre_start]);
+    int indexFoundInt = std::distance(inorder.begin(), indexFoundFromInorder);//transfer it to int
     
-    int dist = indexFoundFromInorder - in_start;
+    int dist = indexFoundInt - in_start;
     pre_start++;
 
-    root->left = buildHelper(pre_start, in_start, indexFoundFromInorder-1, preorder, inorder);
-    root->right = buildHelper(pre_start+dist, indexFoundFromInorder+1, in_end, preorder, inorder);
+    root->left = buildHelper(pre_start, in_start, indexFoundInt-1, preorder, inorder);
+    root->right = buildHelper(pre_start+dist, indexFoundInt+1, in_end, preorder, inorder);
     return root;
 }
 
