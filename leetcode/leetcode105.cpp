@@ -39,3 +39,13 @@ Node* buildHelper(int pre_start, int in_start, int in_end, std::vector<int>& pre
 Node* buildTree(std::vector<int>& preorder, std::vector<int>& inorder) {
     return buildHelper(0, 0, inorder.size()-1, preorder, inorder);
 }
+
+
+//Method2 Using hash table (unordered_map) to store inorder traversal
+//In this way, the searching in inorder traversal will only take O(1)
+//Time complexity: O(n)
+
+
+
+
+//Method3 Using stack
