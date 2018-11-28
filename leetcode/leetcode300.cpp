@@ -2,6 +2,7 @@
 //[10,9,2,5,3,7,101,18], output:4 (2,3,7,101)
 
 #include <vector>
+#include <algorithm>
 
 //DP O(n^2)
 int lengthOfLIS(std::vector<int>& nums){
