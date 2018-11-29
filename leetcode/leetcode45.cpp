@@ -3,6 +3,7 @@
 //each element in the array represents your maximum jup length at that position
 //find the minimum number of jumps to the last index
 
+//similar leetcode55
 #include <iostream>
 #include <vector>
 
@@ -37,7 +38,7 @@ int jump(std::vector<int>& nums){
     return 0;
 }
 
-//Approach 2
+//Approach 2 Greedy
 
 int jump(std::vector<int>& nums){
     int n = nums.size();
@@ -49,7 +50,7 @@ int jump(std::vector<int>& nums){
     int nextMax = nums[0];
     int jumpCount = 1;
 
-    for(int i=1; i<std::min(n, nextMax); i++){ //the min will handle the case in which we can't reach to the last index
+    for(int i=1; i<n; i++){
 
         nextMax = std::max(nextMax, nums[i]+i);
         
