@@ -6,7 +6,7 @@
 //Ordering within a part can be arbitrary.
 //For example, given x = 10 and lst = [9, 12, 3, 5, 14, 10, 10], one partition may be [9, 3, 5, 10, 10, 12, 14]
 
-//similar partition question leetcode 86
+//similar partition question leetcode 86, 75
 
 #include <iostream>
 #include <vector>
@@ -69,44 +69,17 @@ void partitionList(std::vector<int>& nums, int x){
 
     //more effecient approach
     //only one loop
-    int firstEnd=0; //it could be end of first partition or start of second partition(first 10)
-    int thirdStart=0;
-    bool thirdStartExist = false;
-    for(int i=0; i<nums.size(); i++){
+    int low = 0, high = nums.size()-1;
 
+    for(int i=0; i<=high; i++){
         if(nums[i] < x){
-            if(nums[firstEnd] != x){
-                firstEnd = i;
-            }
-            if(nums[firstEnd] == x){
-                std::swap(nums[firstEnd], nums[i]); //swap smaller element with first x
-                if(i == nums.size()-1){// return if it is the last element, otherwise {10,10,2} will fail by output:{10,2,10}
-                    return;
-                }
-                if(nums[firstEnd+1] == x){ //if next one is x, then move firstEnd to the first x
-                    firstEnd++;
-                }
-            }
+            std::swap(nums[i], nums[low]);
+            low++;
         }
-
-        if(nums[i] > x && thirdStartExist == false){ //if thirdStart havent been set, in case the first element is thirdStart
-            thirdStart = i;
-            thirdStartExist = true;
-        }
-
-        if(firstEnd > thirdStart){ //only happens when there is no x in front of thirdStart, and a new smaller found
-            std::swap(nums[firstEnd], nums[thirdStart]);
-            int temp = firstEnd;
-            firstEnd = thirdStart;
-            thirdStart++;
-        }
-
-        if(nums[thirdStart] > x && nums[i] == x){ //make sure thirdStart is not at the initial 0 state
-            std::swap(nums[thirdStart], nums[i]);
-            if(nums[thirdStart-1] != x){ // mark the first x as the firstEnd (for later swapping smaller element with x)
-                firstEnd = thirdStart;
-            }
-            thirdStart++;
+        else if(nums[i] > x){
+            std::swap(nums[i], nums[high]);
+            high--;
+            i--; // in case it is still greater than x after swap
         }
     }
 
